@@ -3,38 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+    <title>確率分布ビューア - Probability Distribution Viewer</title>
+    
+    <!-- External Libraries -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1><i class="fas fa-chart-line"></i> 確率分布ビューア</h1>
+            <p class="subtitle">Probability Distribution Viewer</p>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="tab-container">
+            <button class="tab-button active" data-tab="pdf">
+                <i class="fas fa-chart-bar"></i> 確率密度関数 (PDF)
+            </button>
+            <button class="tab-button" data-tab="cdf">
+                <i class="fas fa-chart-line"></i> 累積分布関数 (CDF)
+            </button>
+            <button class="tab-button" data-tab="stats">
+                <i class="fas fa-calculator"></i> 統計量
+            </button>
+        </div>
+    </nav>
+
     <main class="container">
+        <!-- Control Panel -->
         <div class="panel" id="control-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-sliders-h"></i> パラメータ設定</h3>
+            </div>
+            
             <div class="control-group">
                 <label for="dist-selector">分布を選択:</label>
-                <select id="dist-selector">
+                <select id="dist-selector" class="modern-select">
                     <option value="normal">正規分布 (Normal)</option>
                     <option value="binomial">二項分布 (Binomial)</option>
                     <option value="chi-squared">カイ二乗分布 (Chi-squared)</option>
                     <option value="poisson">ポアソン分布 (Poisson)</option>
                     <option value="exponential">指数分布 (Exponential)</option>
+                    <option value="uniform">一様分布 (Uniform)</option>
+                    <option value="gamma">ガンマ分布 (Gamma)</option>
                 </select>
             </div>
+            
             <div id="parameter-controls"></div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button id="reset-btn" class="action-btn">
+                    <i class="fas fa-undo"></i> リセット
+                </button>
+                <button id="export-btn" class="action-btn">
+                    <i class="fas fa-download"></i> エクスポート
+                </button>
+            </div>
         </div>
 
+        <!-- Display Panel -->
         <div class="panel" id="display-panel">
-            <div id="plot"></div>
-            <div id="info-panel"></div>
+            <div class="panel-header">
+                <h3 id="plot-title">確率密度関数 (PDF)</h3>
+                <div class="plot-controls">
+                    <button id="fullscreen-btn" class="icon-btn" title="全画面表示">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="plot" class="plot-container"></div>
+            
+            <!-- Info Panel -->
+            <div id="info-panel" class="info-panel"></div>
+        </div>
+
+        <!-- Statistics Panel (Hidden by default) -->
+        <div class="panel" id="stats-panel" style="display: none;">
+            <div class="panel-header">
+                <h3><i class="fas fa-calculator"></i> 詳細統計量</h3>
+            </div>
+            <div id="detailed-stats"></div>
         </div>
     </main>
 
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>計算中...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
 </body>
 </html>
-
 
 
