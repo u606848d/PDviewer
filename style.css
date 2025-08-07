@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+}
+.container {
+    display: flex;
+    gap: 20px;
+}
+.controls {
+    width: 300px;
+}
+.plot-area {
+    flex-grow: 1;
+}
+.slider-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="range"] {
+    width: 100%;
+}
