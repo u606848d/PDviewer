@@ -634,12 +634,38 @@ input:focus {
     outline-offset: 2px;
 }
 
+/* ===== Footer Styles ===== */
+.app-footer {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    padding: var(--spacing-lg) 0;
+    margin-top: var(--spacing-2xl);
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.footer-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
 /* ===== Print Styles ===== */
 @media print {
     .nav-tabs,
     #control-panel,
     .quick-actions,
-    .plot-controls {
+    .plot-controls,
+    .app-footer {
         display: none !important;
     }
     
