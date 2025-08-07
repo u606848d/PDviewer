@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Probability Distribution</title>
+    <title>インタラクティブ確率分布ビューア</title>
+    
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-<select id="dist-selector">
-  <option value="normal">正規分布</option>
-  <option value="binomial">二項分布</option>
-</select>
-    <h1>確率分布ビューア</h1>
-    <div class="container">
-        <div class="controls">
-            <h2>正規分布 (Normal Distribution)</h2>
-            <div class="slider-group">
-                <label for="mean">平均 (μ): <span id="mean-value">0</span></label>
-                <input type="range" id="mean" min="-5" max="5" value="0" step="0.1">
-            </div>
-            <div class="slider-group">
-                <label for="stddev">標準偏差 (σ): <span id="stddev-value">1</span></label>
-                <input type="range" id="stddev" min="0.1" max="5" value="1" step="0.1">
-            </div>
-        </div>
-        <div id="plot" class="plot-area"></div>
-    </div>
-    <script src="script.js"></script>
-</body>
 
+    <header>
+        <h1>インタラクティブ確率分布ビューア</h1>
+    </header>
+
+    <main class="container">
+        <div class="panel" id="control-panel">
+            <div class="control-group">
+                <label for="dist-selector">分布を選択:</label>
+                <select id="dist-selector">
+                    <option value="normal">正規分布 (Normal)</option>
+                    <option value="binomial">二項分布 (Binomial)</option>
+                </select>
+            </div>
+            <div id="parameter-controls"></div>
+        </div>
+
+        <div class="panel" id="display-panel">
+            <div id="plot"></div>
+            <div id="info-panel"></div>
+        </div>
+    </main>
+
+</body>
 </html>
